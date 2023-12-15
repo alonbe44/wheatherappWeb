@@ -14,9 +14,7 @@ const WeatherComponent = () => {
 
     try {
       const apiUrl = (bol===false)?`http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=Jordan`
-        : `http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=${search}`
-    
-         ;
+        : `http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=${search}`;
 
       const response = await fetch(apiUrl);
       const result = await response.json();
