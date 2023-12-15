@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import MyComponent from './App';
 import reportWebVitals from './reportWebVitals';
+
+
+  // fetch('http://localhost:3000/api/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=Jordan')
+  // .then(response => {
+  //   if (!response.ok) {
+  //     throw new Error(`HTTP error! Status: ${response.status}`);
+  //   }
+  //   else{
+  //   console.log(response.json());}
+  // })
+  // .then(data => console.log(data))
+  // .catch(error => console.error('Error fetching data:', error));
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <MyComponent/> 
   </React.StrictMode>
 );
 
