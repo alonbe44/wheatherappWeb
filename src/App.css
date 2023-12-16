@@ -3,7 +3,7 @@
  
   background-size: cover;
     background-position: center;
-    color: #fff; /* Text color */
+    color: #fff; 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -31,7 +31,7 @@ input {
 }
 
 button {
-  background-color: #3498db; /* Blue color */
+  background-color: #3498db; 
   color: #fff;
   padding: 12px 20px;
   border: none;
@@ -42,11 +42,11 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9; 
 }
 
 .weather-info {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  background-color: rgba(0, 0, 0, 0.7); 
   padding: 20px;
   border-radius: 8px;
   margin-top: 10px;

@@ -2,7 +2,28 @@ import './App.css';
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 
-var bol=false;
+/**
+In this code, we have a WeatherComponent that fetches and displays weather data for a specific location. It utilizes useCallback and useState hooks to manage its state and perform side effects.
+
+The code first declares a variable 'bol' with a value of false.
+
+Then, the WeatherComponent function is defined, which returns the JSX code for rendering the component. Inside the component, the following state variables are declared and initialized:
+
+data: Used to store the weather data fetched from the API.
+loading: Indicates whether the data is currently being fetched from the API.
+search: Used to store the location for which the weather data should be fetched.
+searchResults: Used to store the results of a search query for locations.
+Inside the component, useCallback is used to create a memoized version of the fetchData function. This memoized function will only be re-created if any of its dependencies change.
+
+The fetchData function is responsible for fetching the weather data from the API. It uses the useEffect hook to run the function when the component mounts, and whenever the search variable changes.
+
+Inside the fetchData function, a try-catch block is used to handle any errors that may occur during the fetching process.
+
+The useSpring hook is used to animate the weather component. This hook returns an array of animated values that can be interpolated and styled accordingly.
+
+In summary, the WeatherComponent is a React component that fetches and displays weather data for a specific location. It uses a combination of useState, useEffect, and useSpring hooks to manage its state and perform side effects. The fetchData function is used to fetch the weather data from the API, and it is memoized using the useCallback hook to optimize performance.
+] */
+var bol = false;
 const WeatherComponent = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,10 +31,10 @@ const WeatherComponent = () => {
   const [searchResults, setSearchResults] = useState(null);
 
   const fetchData = useCallback(async () => {
-    console.log('Fetching data...'+search+'  : '+searchResults);
+    console.log('Fetching data...' + search + '  : ' + searchResults);
 
     try {
-      const apiUrl = (bol===false)?`http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=Jordan`
+      const apiUrl = (bol === false) ? `http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=Jordan`
         : `http://api.weatherapi.com/v1/current.json?key=b43b5f84d6e540ca853162955232710&q=${search}`;
 
       const response = await fetch(apiUrl);
@@ -30,18 +51,17 @@ const WeatherComponent = () => {
 
   useEffect(() => {
     fetchData();
-  },[search, searchResults, fetchData]);
+  }, [search, searchResults, fetchData]);
 
   const handleSearch = () => {
     console.log('Search button clicked');
 
     setSearchResults(null);
-    bol=true;
+    bol = true;
     fetchData();
-    bol=false;
+    bol = false;
   };
 
-  // Animation configuration
   const fadeIn = useSpring({
     opacity: loading ? 0 : 1,
     from: { opacity: 0 },
@@ -49,14 +69,16 @@ const WeatherComponent = () => {
 
   return (
     <animated.div style={fadeIn} className="weather-container">
-      
+
       <div className="search-container">
         <input
           type="text"
           placeholder="Search for a country..."
           value={search}
-          onChange={(e) => {    console.log('Search input changed:', e.target.value);
-          setSearch(e.target.value)}}
+          onChange={(e) => {
+            console.log('Search input changed:', e.target.value);
+            setSearch(e.target.value)
+          }}
         />
         <button onClick={handleSearch}>Search</button>
       </div>
@@ -65,7 +87,7 @@ const WeatherComponent = () => {
         <p>Loading...</p>
       ) : searchResults ? (
         <div>
-          {/* Accessing weather data */}
+
           <p className="location">Location: {searchResults.location.name}</p>
           <p className="country">Country: {searchResults.location.country}</p>
           <p className="local-time">Local Time: {searchResults.location.localtime}</p>
@@ -78,7 +100,7 @@ const WeatherComponent = () => {
         <div>
           {data ? (
             <>
-              {/* Accessing weather data */}
+
               <p className="location">Location: {data.location.name}</p>
               <p className="country">Country: {data.location.country}</p>
               <p className="local-time">Local Time: {data.location.localtime}</p>
@@ -93,7 +115,7 @@ const WeatherComponent = () => {
         </div>
       )}
     </animated.div>
-    
+
   );
 };
 
