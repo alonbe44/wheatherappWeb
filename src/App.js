@@ -24,7 +24,7 @@ const WeatherComponent = () => {
 
       const response = await fetch(apiUrl);
       const result = await response.json();
-      //console.log("calling");
+      console.log("calling");
 
       setData(result);
 
@@ -44,17 +44,20 @@ const WeatherComponent = () => {
 
       setwheaterstate(getBackgroundImage(result.current.condition.text));
       setLoading(false);
+
+
+  
     } 
     catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
 
-  }, []);
+  },[]);
 
   useEffect(() => {
-    fetchData(input);
-  }, [input]);
+    fetchData(input);    
+  },[]);
 
   const handleSearch = (event) => {
     //setSearch(event.target.value);
